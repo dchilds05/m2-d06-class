@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const MONGO_DB_NAME = process.env.MONGO_DB_NAME
+const MONGO_DB_NAME = process.env.MONGO_DB_NAME || "library-project"
 
 mongoose
-  .connect('mongodb://localhost/' + MONGO_DB_NAME, {
+  .connect('mongodb://localhost:27017/' + MONGO_DB_NAME, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true

@@ -16,6 +16,13 @@ require('../configs/db.config');
 
 const books = [
   {
+    title: 'Pizza Bytes',
+    description:
+      'We are the best cohort in all of IronHack.',
+    author: 'IronHack',
+    rating: 10
+  },
+  {
     title: 'The Hunger Games',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
@@ -87,13 +94,10 @@ const books = [
   }
 ];
 
-
 Book.deleteMany()
-.then(deletedBooks => {
-  console.log(`Deleted ${deletedBooks} books`);
-})
-.then(
-  Book.insertMany(books)
+.then(deletedBook => console.log(deletedBook))
+
+Book.insertMany(books)
   .then(booksFromDB => {
     console.log(`Created ${booksFromDB.length} books`);
     console.log(booksFromDB)

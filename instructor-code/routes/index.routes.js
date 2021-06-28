@@ -4,6 +4,8 @@ const router = express.Router();
 /* GET home page */
 
 // Code the  get('/') route here rendering index
-router.get('/');
+router.get('/', (req, res) => {
+  res.render('index', {title: "Home Page TEST"})
+});
 
 module.exports = router;

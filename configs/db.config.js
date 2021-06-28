@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose
-  .connect('mongodb://localhost/library-project', {
+  .connect('mongodb://localhost:27017/library-project', {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
