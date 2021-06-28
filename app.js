@@ -32,6 +32,6 @@ const indexRouter = require('./routes/index.routes');
 app.use('/', indexRouter);
 
 const booksRouter = require('./routes/book.routes');
-app.use('/books', booksRouter);
+app.use('/books', booksRouter); // This will answer to all URLs starting with "/books"
 
 module.exports = app;
