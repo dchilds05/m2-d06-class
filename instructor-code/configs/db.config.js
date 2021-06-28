@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
+const dotenvReturn = require('dotenv').config({path: "../.env" });
 
-const MONGO_DB_NAME = process.env.MONGO_DB_NAME || "library-project"
+const MONGO_DB_NAME = process.env.MONGO_DB_NAME
 
 mongoose
   .connect('mongodb://localhost:27017/' + MONGO_DB_NAME, {
