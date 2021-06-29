@@ -1,27 +1,7 @@
 // bin/seeds.js
-
 const mongoose = require('mongoose');
-const Book = require('../models/Book.model');
-
-// const DB_NAME = 'library-project';
-
-// mongoose.connect(`mongodb://localhost/${DB_NAME}`, {
-//   useCreateIndex: true,
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// });
-
-// require database configuration
-require('../configs/db.config');
 
 const books = [
-  {
-    title: 'Pizza Bytes',
-    description:
-      'We are the best cohort in all of IronHack.',
-    author: 'IronHack',
-    rating: 10
-  },
   {
     title: 'The Hunger Games',
     description:
@@ -94,15 +74,21 @@ const books = [
   }
 ];
 
-Book.deleteMany()
-.then(deletedBook => console.log(deletedBook))
+const Book = require('../models/Book.model');
 
-Book.insertMany(books)
-  .then(booksFromDB => {
-    console.log(`Created ${booksFromDB.length} books`);
-    console.log(booksFromDB)
-    mongoose.connection.close();
-  })
-  .catch(err =>
-    console.log(`An error occurred while getting books from the DB: ${err}`)
+// require database configuration
+require('../configs/db.config');
+
+Book.deleteMany()
+.then(deletedBooks =>
+  console.log(`Deleted ${deletedBooks.deletedCount} books`)
+)
+.then(
+  Book.insertMany(books)
+  .then(insertedBooks => {
+    console.log(`Created ${insertedBooks.length} books`)
+    mongoose.connection.close()}
   ))
+.catch(err =>
+   console.log(`An error occurred seeding books to the DB: ${err}`)
+)
