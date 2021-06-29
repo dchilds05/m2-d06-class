@@ -6,6 +6,7 @@ const router = express.Router(); // This is the Router class inside the Express 
 
 // ********* require Book model in order to use it *********
 const Book = require('../models/Book.model');
+const Author = require('../models/Author.model');
 
 // This answers to the /books/add URL
 router.post('/add', (req, res)=>{
@@ -28,7 +29,10 @@ router.post('/add', (req, res)=>{
 })
 
 router.get('/add', (req, res) => {
-  res.render('book-add')
+  Author.find()
+  .then(allAuthors => 
+    res.render('book-add', {allAuthors})
+  )
 })
 
 router.post('/edit/:id', (req, res)=>{
@@ -59,8 +63,15 @@ router.get('/delete/:id', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const id = req.params.id;
-  Book.findById(id).then( bookFromCollection => res.render("book-details" , bookFromCollection))
+  Book.findById(id)
+  //.populate('author')
+  .then( bookFromCollection => {
+    console.log(bookFromCollection)
+    res.render("book-details" , bookFromCollection)
+  })
 });
+
+
 
 // ****************************************************************************************
 // GET route to display all the books

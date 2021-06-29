@@ -10,7 +10,16 @@
 
   <br>
   <label for=''>Author</label>
-  <input type='text' name='author'>
+{{!--- <input type='text' name='author'> ---}}  
+    <select name="author">
+      <option disable selected value="">Select an author</option>
+      {{#each allAuthors}}
+        <option value="{{this._id}}"> {{this.name}} {{this.surname}}</option>
+      {{/each}}
+    </select>
+
+
+
 
   <br>
   <label for=''>Rating</label>
